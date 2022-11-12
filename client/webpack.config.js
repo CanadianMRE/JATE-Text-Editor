@@ -27,6 +27,8 @@ module.exports = () => {
         swDest: 'src-sw.js',
       }),
       new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
         name: 'JATEdit',
         short_name: 'JATEdit',
         description: 'Your one n only text editor!',
@@ -51,12 +53,8 @@ module.exports = () => {
           use: ['style-loader', 'css-loader'],
         },
         {
-          test: /\.(png|svg|jpg|jpeg|gif)$/i,
-          type: 'asset/resource',
-        },
-        {
           test: /\.m?js$/,
-          exclude: /(node_modules|bower_components)/,
+          exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
